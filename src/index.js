@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const title = "React Starter Pack";
+const title = 'reactstarterpack';
 
 ReactDOM.render(
   <div>{title}</div>,
-  document.getElementById('app')
+  document.getElementById('root')
 );
 
-
-module.hot.accept();
+console.log('CAN U SEE THIS foo?');
