@@ -26,6 +26,7 @@ B. code splitting vendor dependencies -> split up code base so that vendors are 
   3. use 'HtmlWebpackPlugin' so don't have to manually maintain index.html w/ all the necessary split up scripts
   4. use [chunkhash] to bust the hash -> everytime bundle/vendor file is changed, name of file (aka the chunkhash) will slightly change (so no longer cached by browser; will re-d/l it)
   5. use "rimraf" npm package to clear out dist directory before each build
+C. [output - publicPath] + [devServer - historyApiFallback] -> so that when refresh on a different route, redirects to home route and then react router points to appropriate route
 */
 
 module.exports = {
@@ -35,7 +36,8 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js'
+    filename: '[name].[chunkhash].js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -49,6 +51,9 @@ module.exports = {
         test: /\.css$/
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
